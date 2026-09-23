@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mackade's Writings</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .mk-page { width: 100%; max-width: 760px; }
+  .mk-title { font-size: 42px; }
+  #gb-list { width: 100%; max-width: 100%; box-sizing: border-box; }
+  #gb-form input[type="text"], #admin-panel input, #admin-panel textarea { max-width: 100%; box-sizing: border-box; }
+  @media (max-width: 620px) {
+    .mk-title { font-size: 30px; }
+    .mk-nav-cell, .mk-title-cell { display: block !important; width: 100% !important; text-align: left !important; }
+    .mk-nav-cell { margin-top: 8px; }
+    #gb-form input[type="text"] { width: 100%; display: block; margin-bottom: 6px; }
+    #gb-form br { display: none; }
+    #admin-panel input, #admin-panel textarea { width: 100%; display: block; margin-bottom: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    marquee { animation-play-state: paused !important; }
+  }
+  #admin-login-box, #admin-panel { display: none; }
+  .mk-star { cursor: default; }
+</style>
+</head>
+<body bgcolor="#800000" text="#D4AF37" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<script>
+  var SUPABASE_URL = 'https://fexnhhothwdpgujlkioc.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleG5oaG90aHdkcGd1amxraW9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMjgzMDcsImV4cCI6MjEwNTYwNDMwN30.V1tDKg_Ujz5CqGeBYEFX1r4Z-ABkf8lyaNhoX_U4vTU';
+  var ADMIN_EMAIL = 'mackadefernandez@gmail.com';
+</script>
+
+<center>
+
+<table class="mk-page" cellpadding="0" cellspacing="0" border="0" bgcolor="#800000">
+<tr><td>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="#000000">
+<tr><td align="center">
+<font face="Courier New" color="#D4AF37" size="2">
+<span class="mk-star" data-i="1">*</span><span class="mk-star" data-i="2">*</span><span class="mk-star" data-i="3">*</span> grrriffic reading! <span class="mk-star" data-i="4">*</span><span class="mk-star" data-i="5" id="mk-asterisk-5">*</span><span class="mk-star" data-i="6">*</span>
+</font>
+</td></tr>
+</table>
+
+<br>
+
+<table width="100%" cellpadding="10" cellspacing="0" border="0">
+<tr>
+<td class="mk-title-cell" valign="top" align="left">
+<font face="Times New Roman" class="mk-title"><b>Mackade's Writings</b></font>
+</td>
+<td class="mk-nav-cell" valign="top" align="right" width="220">
+<font face="Arial" size="2">
+<a href="https://mackade.com">Learn even more here! mackade.com</a> |
+<a href="https://substack.com/@mackade" target="_blank" rel="noopener">Substack</a>
+</font>
+</td>
+</tr>
+</table>
+
+<hr width="95%" size="2" noshade>
+
+<table width="95%" cellpadding="10" cellspacing="0" border="0" align="center">
+<tr><td align="left">
+
+<a name="home"></a>
+<font face="Times New Roman" size="5"><b>I. Welcome</b></font><br><br>
+<font face="Times New Roman" size="3"><span id="mk-welcome">
+Welcome! Here at <i>mackade.com</i> we move toward freedom and enlightenment.&nbsp;&nbsp;&nbsp;&nbsp;Don't you want a world of unconditional love and brotherhood?&nbsp;&nbsp;&nbsp;&nbsp;I have the secrets to self-improvement&nbsp;&nbsp;&nbsp;&nbsp;You can join me and be special&nbsp;&nbsp;&nbsp;&nbsp;My ideology answers all questions, to all problems&nbsp;&nbsp;&nbsp;&nbsp;I'll give you a perfect life&nbsp;&nbsp;&nbsp;&nbsp;Let my doctrine think for you&nbsp;&nbsp;&nbsp;&nbsp;I am building a world of endless joy!&nbsp;&nbsp;&nbsp;&nbsp;Our truth is the only truth&nbsp;&nbsp;&nbsp;&nbsp;I can teach you special powers:&nbsp;&nbsp;&nbsp;&nbsp;Personal power, <i>psychic power!</i>&nbsp;&nbsp;&nbsp;&nbsp;YOU ARE NOT LIVING UP TO YOUR POTENTIAL :(&nbsp;&nbsp;&nbsp;&nbsp;You will love what I have to say!&nbsp;&nbsp;&nbsp;&nbsp;You can't wait for tomorrow&nbsp;&nbsp;&nbsp;&nbsp;I know exactly what you're worth&nbsp;&nbsp;&nbsp;&nbsp;I will <u>always</u> be there to make you smile
+</span></font>
+
+<br><br><hr width="60%" noshade><br>
+
+<a name="articles"></a>
+<font face="Times New Roman" size="5"><b>II. Articles</b></font><br><br>
+<font face="Times New Roman" size="3">
+A running record of essays. Select any title to read the piece in full.
+</font>
+<br><br>
+<div id="articles-list">
+<font face="Times New Roman" size="3"><i>Loading articles...</i></font>
+</div>
+
+<br><br><hr width="60%" noshade><br>
+
+<a name="guestbook"></a>
+<font face="Times New Roman" size="5"><b>III. Guestbook</b></font><br><br>
+<font face="Times New Roman" size="3">
+Leave your name below. Every visitor who has signed appears in the box beneath.
+</font>
+<br><br>
+
+<textarea id="gb-list" rows="12" cols="62" readonly style="font-family:'Courier New',monospace;">Loading guestbook...</textarea>
+
+<br><br>
+
+<form id="gb-form" onsubmit="return false;">
+<font face="Times New Roman" size="2">
+First name: <input type="text" id="gb-first" size="16" maxlength="40">
+&nbsp; Last name: <input type="text" id="gb-last" size="16" maxlength="40">
+<br><br>
+<span style="display:none;">
+Leave blank: <input type="text" id="gb-hp" size="10" autocomplete="off" tabindex="-1">
+</span>
+<input type="submit" value="  Sign the Guestbook  " onclick="mkSignGuestbook()">
+&nbsp; <span id="gb-status"></span>
+</font>
+</form>
+
+<font face="Times New Roman" size="1"><i>[Guestbook entries are stored in a shared database and visible to every visitor.]</i></font>
+
+<br><br><hr width="60%" noshade><br>
+
+<a name="newsletter"></a>
+<font face="Times New Roman" size="5"><b>IV. The Newsletter</b></font><br><br>
+<font face="Times New Roman" size="3"><span id="mk-newsletter-text">
+You will be highly valued if you subscribe. New writing, notes, and correspondence issued on a regular
+schedule: when i feel like it :3
+</span></font>
+<br><br>
+<form id="mk-newsletter-form" action="https://yourname.substack.com" method="get" target="_blank">
+<input type="submit" value="  Subscribe to the Newsletter  ">
+</form>
+<font face="Times New Roman" size="2"><i>(Point the form above at your Substack address.)</i></font>
+
+<br><br><hr width="60%" noshade><br>
+
+<a name="contact"></a>
+<font face="Times New Roman" size="5"><b>V. Correspondence</b></font><br><br>
+<font face="Times New Roman" size="3">
+<b>Electronic Mail</b> &nbsp;&mdash;&nbsp; <a id="mk-contact-email" href="mailto:you@example.com">you@example.com</a><br><br>
+<b>Twitter</b> &nbsp;&mdash;&nbsp; <a id="mk-contact-twitter" href="#">@yourhandle</a><br><br>
+<b>Prints / Sales</b> &nbsp;&mdash;&nbsp; <a id="mk-contact-prints" href="#">inquiry link</a><br><br>
+<b>Commissions</b> &nbsp;&mdash;&nbsp; by arrangement, <a id="mk-contact-commissions" href="#">inquiry link or mail</a>
+</font>
+
+<br><br><hr width="60%" noshade><br>
+
+<div id="admin-login-box">
+<font face="Times New Roman" size="4"><b>Admin Login</b></font><br><br>
+<font face="Times New Roman" size="2">
+Password: <input type="password" id="admin-pw" size="20">
+<input type="submit" value=" Log In " onclick="mkAdminLogin()">
+&nbsp; <span id="admin-login-status"></span>
+</font>
+</div>
+
+<div id="admin-panel">
+<font face="Times New Roman" size="4"><b>Admin Panel</b></font>
+&nbsp; <input type="submit" value=" Log Out " onclick="mkAdminLogout()">
+<br><br>
+
+<font face="Times New Roman" size="3"><b>Site Text</b></font><br><br>
+<font face="Times New Roman" size="2">
+Welcome text:<br><textarea id="edit-welcome" rows="5" cols="60"></textarea><br><br>
+Newsletter text:<br><textarea id="edit-newsletter" rows="3" cols="60"></textarea><br><br>
+Newsletter (Substack) URL:<br><input type="text" id="edit-newsletter-url" size="60"><br><br>
+Contact email:<br><input type="text" id="edit-contact-email" size="60"><br><br>
+Twitter handle (display text):<br><input type="text" id="edit-contact-twitter" size="60"><br><br>
+Twitter URL:<br><input type="text" id="edit-contact-twitter-url" size="60"><br><br>
+Prints/Sales URL:<br><input type="text" id="edit-contact-prints" size="60"><br><br>
+Commissions URL:<br><input type="text" id="edit-contact-commissions" size="60"><br><br>
+<input type="submit" value=" Save Site Text " onclick="mkSaveText()">
+&nbsp; <span id="text-save-status"></span>
+</font>
+
+<br><br><hr width="60%" noshade><br>
+
+<font face="Times New Roman" size="3"><b>Articles</b></font><br><br>
+<div id="admin-articles-list"></div>
+<br>
+<font face="Times New Roman" size="2">
+<b>Add a new article</b><br><br>
+Title:<br><input type="text" id="new-art-title" size="60"><br><br>
+URL (link to full article):<br><input type="text" id="new-art-url" size="60"><br><br>
+Excerpt:<br><input type="text" id="new-art-excerpt" size="60"><br><br>
+<input type="submit" value=" Add Article " onclick="mkAddArticle()">
+&nbsp; <span id="art-save-status"></span>
+</font>
+
+<br><br><hr width="60%" noshade><br>
+
+<font face="Times New Roman" size="3"><b>Guestbook Entries</b></font><br><br>
+<div id="admin-guestbook-list"></div>
+</div>
+
+</td></tr>
+</table>
+
+<br>
+<hr width="95%" size="2" noshade>
+
+<font face="Arial" size="1" color="#D4AF37">
+[ Best Viewed at 800x600 ]
+<br><br>
+<table cellpadding="3" cellspacing="0" border="0" bgcolor="#000000" align="center">
+<tr><td>
+<font face="Courier New" color="#00FF00" size="2" id="hit-counter">000000</font>
+</td></tr>
+</table>
+visitors received to date, above.
+</font>
+
+<br><br>
+
+</td></tr>
+</table>
+
+</center>
+
+<script>
+(function () {
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var session = null;
+
+  // ---------- visitor counter (per-browser) ----------
+  (function bumpCounter() {
+    var el = document.getElementById('hit-counter');
+    try {
+      var n = parseInt(localStorage.getItem('mackade_hits_local') || '0', 10) + 1;
+      localStorage.setItem('mackade_hits_local', n);
+      if (el) el.textContent = String(n).padStart(6, '0');
+    } catch (e) {}
+  })();
+
+  // ---------- discrete admin trigger: click the 5th asterisk 3 times ----------
+  var clickCount = 0;
+  var clickTimer = null;
+  document.getElementById('mk-asterisk-5').addEventListener('click', function () {
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(function () { clickCount = 0; }, 4000);
+    if (clickCount >= 3) {
+      clickCount = 0;
+      document.getElementById('admin-login-box').style.display = 'block';
+      document.getElementById('admin-login-box').scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  window.mkAdminLogin = async function () {
+    var pw = document.getElementById('admin-pw').value;
+    var statusEl = document.getElementById('admin-login-status');
+    statusEl.textContent = 'Checking...';
+    try {
+      var res = await sb.auth.signInWithPassword({ email: ADMIN_EMAIL, password: pw });
+      if (res.error) { statusEl.textContent = 'Incorrect password.'; return; }
+      session = res.data.session;
+      statusEl.textContent = '';
+      document.getElementById('admin-login-box').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      mkLoadAdminData();
+    } catch (e) {
+      statusEl.textContent = 'Login failed.';
+    }
+  };
+
+  window.mkAdminLogout = async function () {
+    try { await sb.auth.signOut(); } catch (e) {}
+    session = null;
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('admin-pw').value = '';
+  };
+
+  // restore session on reload if already logged in on this browser
+  sb.auth.getSession().then(function (r) {
+    if (r.data && r.data.session) {
+      session = r.data.session;
+      document.getElementById('admin-panel').style.display = 'block';
+      mkLoadAdminData();
+    }
+  });
+
+  // ---------- site text ----------
+  var DEFAULT_TEXT = {
+    welcome_text: document.getElementById('mk-welcome').innerHTML.trim(),
+    newsletter_text: document.getElementById('mk-newsletter-text').innerHTML.trim(),
+    newsletter_url: 'https://yourname.substack.com',
+    contact_email: 'you@example.com',
+    contact_twitter_handle: '@yourhandle',
+    contact_twitter_url: '#',
+    contact_prints_url: '#',
+    contact_commissions_url: '#'
+  };
+
+  async function loadSiteText() {
+    try {
+      var res = await sb.from('site_content').select('key,value');
+      var map = {};
+      (res.data || []).forEach(function (r) { map[r.key] = r.value; });
+      var get = function (k) { return map[k] !== undefined ? map[k] : DEFAULT_TEXT[k]; };
+
+      document.getElementById('mk-welcome').innerHTML = get('welcome_text');
+      document.getElementById('mk-newsletter-text').innerHTML = get('newsletter_text');
+      document.getElementById('mk-newsletter-form').action = get('newsletter_url');
+      var emailEl = document.getElementById('mk-contact-email');
+      emailEl.textContent = get('contact_email');
+      emailEl.href = 'mailto:' + get('contact_email');
+      var twEl = document.getElementById('mk-contact-twitter');
+      twEl.textContent = get('contact_twitter_handle');
+      twEl.href = get('contact_twitter_url');
+      document.getElementById('mk-contact-prints').href = get('contact_prints_url');
+      document.getElementById('mk-contact-commissions').href = get('contact_commissions_url');
+
+      // fill admin edit fields
+      document.getElementById('edit-welcome').value = get('welcome_text');
+      document.getElementById('edit-newsletter').value = get('newsletter_text');
+      document.getElementById('edit-newsletter-url').value = get('newsletter_url');
+      document.getElementById('edit-contact-email').value = get('contact_email');
+      document.getElementById('edit-contact-twitter').value = get('contact_twitter_handle');
+      document.getElementById('edit-contact-twitter-url').value = get('contact_twitter_url');
+      document.getElementById('edit-contact-prints').value = get('contact_prints_url');
+      document.getElementById('edit-contact-commissions').value = get('contact_commissions_url');
+    } catch (e) {}
+  }
+  loadSiteText();
+
+  window.mkSaveText = async function () {
+    var statusEl = document.getElementById('text-save-status');
+    statusEl.textContent = 'Saving...';
+    var rows = [
+      { key: 'welcome_text', value: document.getElementById('edit-welcome').value },
+      { key: 'newsletter_text', value: document.getElementById('edit-newsletter').value },
+      { key: 'newsletter_url', value: document.getElementById('edit-newsletter-url').value },
+      { key: 'contact_email', value: document.getElementById('edit-contact-email').value },
+      { key: 'contact_twitter_handle', value: document.getElementById('edit-contact-twitter').value },
+      { key: 'contact_twitter_url', value: document.getElementById('edit-contact-twitter-url').value },
+      { key: 'contact_prints_url', value: document.getElementById('edit-contact-prints').value },
+      { key: 'contact_commissions_url', value: document.getElementById('edit-contact-commissions').value }
+    ];
+    try {
+      var res = await sb.from('site_content').upsert(rows, { onConflict: 'key' });
+      if (res.error) throw res.error;
+      statusEl.textContent = 'Saved.';
+      loadSiteText();
+    } catch (e) {
+      statusEl.textContent = 'Could not save.';
+    }
+  };
+
+  // ---------- articles (public list) ----------
+  async function loadArticlesPublic() {
+    var el = document.getElementById('articles-list');
+    try {
+      var res = await sb.from('articles').select('id,title,url,excerpt').order('published_at', { ascending: false }).limit(50);
+      if (res.error || !res.data || res.data.length === 0) {
+        el.innerHTML = '<font face="Times New Roman" size="3"><i>No articles yet.</i></font>';
+        return;
+      }
+      var html = '<font face="Times New Roman" size="3">';
+      res.data.forEach(function (row, i) {
+        var title = (row.title || 'Untitled');
+        var url = row.url || '#';
+        var excerpt = row.excerpt ? ' &mdash; ' + row.excerpt : '';
+        html += '<b>' + (i + 1) + '.</b> <a href="' + url + '">' + title + '</a>' + excerpt + '<br><br>';
+      });
+      html += '</font>';
+      el.innerHTML = html;
+    } catch (e) {}
+  }
+  loadArticlesPublic();
+
+  // ---------- articles (admin manage) ----------
+  async function loadArticlesAdmin() {
+    var el = document.getElementById('admin-articles-list');
+    try {
+      var res = await sb.from('articles').select('id,title,url,excerpt').order('published_at', { ascending: false }).limit(200);
+      if (!res.data || res.data.length === 0) {
+        el.innerHTML = '<font face="Times New Roman" size="2"><i>No articles yet.</i></font>';
+        return;
+      }
+      var html = '<font face="Times New Roman" size="2">';
+      res.data.forEach(function (row) {
+        html += (row.title || 'Untitled') + ' &nbsp; <input type="submit" value="Delete" onclick="mkDeleteArticle(' + row.id + ')"><br><br>';
+      });
+      html += '</font>';
+      el.innerHTML = html;
+    } catch (e) {}
+  }
+
+  window.mkAddArticle = async function () {
+    var statusEl = document.getElementById('art-save-status');
+    var title = document.getElementById('new-art-title').value.trim();
+    var url = document.getElementById('new-art-url').value.trim() || '#';
+    var excerpt = document.getElementById('new-art-excerpt').value.trim();
+    if (!title) { statusEl.textContent = 'Title is required.'; return; }
+    statusEl.textContent = 'Saving...';
+    try {
+      var res = await sb.from('articles').insert({ title: title, url: url, excerpt: excerpt });
+      if (res.error) throw res.error;
+      document.getElementById('new-art-title').value = '';
+      document.getElementById('new-art-url').value = '';
+      document.getElementById('new-art-excerpt').value = '';
+      statusEl.textContent = 'Added.';
+      loadArticlesPublic();
+      loadArticlesAdmin();
+    } catch (e) {
+      statusEl.textContent = 'Could not save.';
+    }
+  };
+
+  window.mkDeleteArticle = async function (id) {
+    try {
+      await sb.from('articles').delete().eq('id', id);
+      loadArticlesPublic();
+      loadArticlesAdmin();
+    } catch (e) {}
+  };
+
+  // ---------- guestbook (public) ----------
+  var gbListEl = document.getElementById('gb-list');
+  var gbStatusEl = document.getElementById('gb-status');
+  var pageLoadTime = Date.now();
+
+  async function loadGuestbookPublic() {
+    try {
+      var res = await sb.from('guestbook').select('first_name,last_name').order('created_at', { ascending: false }).limit(500);
+      if (res.error) { gbListEl.value = '(could not load guestbook)'; return; }
+      var lines = (res.data || []).map(function (r) { return r.first_name + ' ' + r.last_name; });
+      gbListEl.value = lines.length ? lines.join('\n') : '(no entries yet)';
+    } catch (e) {
+      gbListEl.value = '(could not load guestbook)';
+    }
+  }
+  loadGuestbookPublic();
+
+  window.mkSignGuestbook = async function () {
+    var firstEl = document.getElementById('gb-first');
+    var lastEl = document.getElementById('gb-last');
+    var hpEl = document.getElementById('gb-hp');
+    var first = (firstEl.value || '').trim().slice(0, 40);
+    var last = (lastEl.value || '').trim().slice(0, 40);
+
+    if (hpEl.value) { gbStatusEl.textContent = ''; return; }
+    if (Date.now() - pageLoadTime < 2500) { gbStatusEl.textContent = 'Please wait a moment and try again.'; return; }
+    if (!first || !last) { gbStatusEl.textContent = 'Please enter both names.'; return; }
+    var lastSubmit = parseInt(localStorage.getItem('mackade_gb_last_submit') || '0', 10);
+    if (Date.now() - lastSubmit < 20000) { gbStatusEl.textContent = 'You already signed recently &mdash; thank you.'; return; }
+
+    gbStatusEl.textContent = 'Signing...';
+    try {
+      var res = await sb.from('guestbook').insert({ first_name: first, last_name: last });
+      if (res.error) throw res.error;
+      localStorage.setItem('mackade_gb_last_submit', Date.now());
+      firstEl.value = '';
+      lastEl.value = '';
+      gbStatusEl.textContent = 'Thank you for signing.';
+      loadGuestbookPublic();
+    } catch (e) {
+      gbStatusEl.textContent = 'Could not sign right now, please try again later.';
+    }
+  };
+
+  // ---------- guestbook (admin manage) ----------
+  async function loadGuestbookAdmin() {
+    var el = document.getElementById('admin-guestbook-list');
+    try {
+      var res = await sb.from('guestbook').select('id,first_name,last_name').order('created_at', { ascending: false }).limit(500);
+      if (!res.data || res.data.length === 0) {
+        el.innerHTML = '<font face="Times New Roman" size="2"><i>No entries yet.</i></font>';
+        return;
+      }
+      var html = '<font face="Times New Roman" size="2">';
+      res.data.forEach(function (row) {
+        html += row.first_name + ' ' + row.last_name + ' &nbsp; <input type="submit" value="Remove" onclick="mkDeleteGuest(' + row.id + ')"><br><br>';
+      });
+      html += '</font>';
+      el.innerHTML = html;
+    } catch (e) {}
+  }
+
+  window.mkDeleteGuest = async function (id) {
+    try {
+      await sb.from('guestbook').delete().eq('id', id);
+      loadGuestbookPublic();
+      loadGuestbookAdmin();
+    } catch (e) {}
+  };
+
+  function mkLoadAdminData() {
+    loadArticlesAdmin();
+    loadGuestbookAdmin();
+  }
+})();
+</script>
+
+</body>
+</html>
